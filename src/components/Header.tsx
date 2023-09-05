@@ -2,6 +2,7 @@ import styled from "@emotion/styled";
 import { Box, Button, IconButton, Menu, MenuItem } from "@mui/material";
 import React from "react";
 import MenuIcon from "@mui/icons-material/Menu";
+import { Link } from "react-router-dom";
 
 type Props = {};
 
@@ -131,9 +132,12 @@ export const Header = React.memo(({}: Props) => {
             <img src={`${process.env.PUBLIC_URL}/images/redit.svg`} alt="redit" />
           </a>
         </Box>
+        <Box component={Link} to="/login" sx={{
+          ml:'auto',
+          display: 'inline',
+        }}>
         <Button
           sx={{
-            ml: "auto",
             textTransform: "capitalize",
             bgcolor: "#29781D",
 
@@ -145,6 +149,7 @@ export const Header = React.memo(({}: Props) => {
         >
           Login
         </Button>
+        </Box>
       </div>
     </CustomHeader>
   );
