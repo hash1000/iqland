@@ -6,7 +6,7 @@ import styled from '@emotion/styled'
 
 type Props = {
   children: React.ReactNode,
-  sx: SxProps<Theme> | undefined
+  sx?: SxProps<Theme> | undefined
 }
 
 const CustomLayoutContainer = styled(Box)`

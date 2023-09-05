@@ -4,6 +4,7 @@ import { DefaultLayout } from "../components/Layouts";
 import Paper from "@mui/material/Paper";
 import InputBase from "@mui/material/InputBase";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 export const Home = () => {
   const [showModal, setShowModal] = useState<boolean>(false);
@@ -115,7 +116,15 @@ export const Home = () => {
           <Button variant="contained" onClick={() => setShowModal(true)}>
             Join the waitlist
           </Button>
-          <Button variant="contained">FAQ</Button>
+          <Box
+            sx={{
+              display: "inline",
+            }}
+            component={Link}
+            to="/FAQs"
+          >
+            <Button variant="contained">FAQ</Button>
+          </Box>
         </Box>
 
         <Modal
@@ -130,7 +139,7 @@ export const Home = () => {
             },
           }}
         >
-          <Box sx={{ ...style, maxWidth: '200px' }}>
+          <Box sx={{ ...style, maxWidth: "200px" }}>
             <Typography
               variant="h5"
               sx={{
