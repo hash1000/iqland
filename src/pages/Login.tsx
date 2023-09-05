@@ -12,7 +12,7 @@ import login from "../assets/Logo .png";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 
-const Login = () => {
+export const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -243,4 +243,3 @@ const Login = () => {
   );
 };
 
-export default Login;
