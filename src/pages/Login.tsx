@@ -7,8 +7,6 @@ import {
   Typography,
 } from "@mui/material";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
-import loginImage from "../assets/login_bg.png";
-import login from "../assets/Logo .png";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 
@@ -41,7 +39,7 @@ export const Login = () => {
           }}
         >
           <img
-            src={loginImage}
+            src={`${process.env.PUBLIC_URL}/images/login_bg.png`}
             alt="login"
             style={{ width: "100%", height: "100%", }}
           />
@@ -62,8 +60,9 @@ export const Login = () => {
               alignItems: "center",
             }}
           >
-            <Box sx={{ paddingTop:"44px" }}>
-              <img src={login} alt="" />
+            
+            <Box sx={{ pt:"44px" }} component={Link} to="/">
+              <img src={process.env.PUBLIC_URL + '/images/Logo.png'} alt="" />
             </Box>
             <Box sx={{ width: "65%" }}>
               <Box sx={{ marginTop:"10%"}}>

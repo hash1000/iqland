@@ -1,13 +1,51 @@
-import { Box, Button, Modal, Typography } from "@mui/material";
-import { DefaultLayout } from "../components/Layouts";
-
-import Paper from "@mui/material/Paper";
-import InputBase from "@mui/material/InputBase";
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import {Box, Button, Modal, Paper, InputBase, Typography} from "@mui/material";
+import {DefaultLayout} from "../components/Layouts";
+import CloseIcon from "@mui/icons-material/Close";
+import CircularProgress from "@mui/material/CircularProgress";
+import {useState} from "react";
+import {Link} from "react-router-dom";
+import axios from "axios";
+import { useToast } from "../components/Layouts/toastContext";
 
 export const Home = () => {
   const [showModal, setShowModal] = useState<boolean>(false);
+  const [email, setEmail] = useState<string>("");
+  const [isValidEmail, setIsValidEmail] = useState<boolean | null>(null);
+  const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
+  const {showToast} = useToast();
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setIsValidEmail(null);
+
+    const emailPattern = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
+    const isValid = emailPattern.test(email);
+    setIsValidEmail(isValid);
+
+    if (isValid) {
+      try {
+        const response = await axios.post(
+          "https://ahmad6192.pythonanywhere.com/join_waitlist",
+          {
+            email,
+          },
+          {
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
+        console.log(JSON.stringify(response.data));
+        setShowModal(true);
+      } catch (error) {
+        console.log();
+        showToast(`${(error as Error).message}. Please try again later.`);
+      }
+    }
+
+    setIsSubmitting(false);
+  };
 
   const style = {
     position: "absolute" as "absolute",
@@ -30,7 +68,7 @@ export const Home = () => {
   };
 
   return (
-    <DefaultLayout sx={{ background: "#EDF2F6" }}>
+    <DefaultLayout sx={{background: "#EDF2F6"}}>
       <Box
         sx={{
           display: "flex",
@@ -56,35 +94,42 @@ export const Home = () => {
           },
         }}
       >
-        <img src={`${process.env.PUBLIC_URL}/images/Logo 1.svg`} alt="logo" />
+        <img src={`${process.env.PUBLIC_URL}/images/logomain.svg`} alt="logo" />
+        <Box component="form" onSubmit={handleSubmit} sx={{
+            width: "100%",
+        }}>
         <Paper
           sx={{
             px: "17px",
-            mb: "27px",
             display: "flex",
             alignItems: "center",
-            width: "100%",
+            justifyContent: "center",
+            width: "auto",
             height: "45px",
             maxWidth: "548px",
             borderRadius: "8px",
             border: "1px solid rgba(41, 120, 29, 0.23)",
             background: "rgba(41, 120, 29, 0.10)",
             boxShadow: "none",
+            margin: "0 auto",
+            marginBottom: "27px",
           }}
         >
-          {/* <SearchIcon
-            sx={{
-              fill: "#628979",
-            }}
-          /> */}
           <InputBase
-            sx={{ ml: 1, flex: 1 }}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+              setEmail(e.target.value)
+            }
+            type="email"
+            required
+            sx={{ml: 1, flex: 1}}
             placeholder="Integrate Constant Contact"
-            inputProps={{ "aria-label": "Integrate Constant Contact " }}
+            inputProps={{"aria-label": "Integrate Constant Contact "}}
           />
-          <img src={`${process.env.PUBLIC_URL}/images/Question icon.svg`} alt="help" />
+          <img
+            src={`${process.env.PUBLIC_URL}/images/Questionicon.svg`}
+            alt="help"
+          />
         </Paper>
-
         <Box
           sx={{
             display: "flex",
@@ -113,20 +158,35 @@ export const Home = () => {
             },
           }}
         >
-          <Button variant="contained" onClick={() => setShowModal(true)}>
-            Join the waitlist
+          <Button
+            variant="contained"
+            type="submit"
+            // onClick={handleSubmit}
+            disabled={isSubmitting}
+          >
+            {isSubmitting ? (
+              <CircularProgress
+                sx={{
+                  width: "20px !important",
+                  height: "20px !important",
+                  color: "#29781D",
+                }}
+              />
+            ) : (
+              "Join the waitlist"
+            )}
           </Button>
           <Box
             sx={{
               display: "inline",
             }}
             component={Link}
-            to="/FAQs"
+            to="/faqs"
           >
             <Button variant="contained">FAQ</Button>
           </Box>
         </Box>
-
+        </Box>
         <Modal
           open={showModal}
           onClose={() => setShowModal(false)}
@@ -139,13 +199,30 @@ export const Home = () => {
             },
           }}
         >
-          <Box sx={{ ...style, maxWidth: "200px" }}>
+          <Box sx={{...style, maxWidth: "200px"}}>
+            <Box
+              sx={{
+                width: "100%",
+                textAlign: "right",
+                marginRight: "-30px",
+              }}
+            >
+              <CloseIcon
+                onClick={() => setShowModal(false)}
+                sx={{
+                  width: "30px",
+                  height: "30px",
+                  cursor: "pointer",
+                }}
+              />
+            </Box>
             <Typography
               variant="h5"
               sx={{
                 color: "#29781D",
                 fontSize: "25px",
                 fontWeight: "700",
+                mb: "8px",
               }}
               component="h2"
             >
@@ -160,7 +237,7 @@ export const Home = () => {
             >
               Your are on the waitlist.
             </Typography>
-            <Button
+            {/* <Button
               variant="contained"
               size="small"
               sx={{
@@ -172,13 +249,13 @@ export const Home = () => {
                   background: "#29781D",
                 },
               }}
-              onClick={() => setShowModal(false)}
+
             >
               Close
-            </Button>
+            </Button> */}
           </Box>
         </Modal>
-      </Box>
+        </Box>
     </DefaultLayout>
   );
 };

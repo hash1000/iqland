@@ -21,9 +21,7 @@ export function DefaultLayout({children, sx}: Props) {
   return (
     <CustomLayoutContainer sx={sx}>
       <Header/>
-      
-      {children}
-      
+        {children}
       <Footer/>
     </CustomLayoutContainer>
   )

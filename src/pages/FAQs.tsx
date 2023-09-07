@@ -1,65 +1,93 @@
 import React from "react";
-import { DefaultLayout } from "../components/Layouts";
-import { Accordion, AccordionDetails, AccordionSummary, Box, Typography } from "@mui/material";
+import {DefaultLayout} from "../components/Layouts";
+import {
+  Accordion,
+  AccordionDetails,
+  AccordionSummary,
+  Box,
+  Typography,
+  styled,
+} from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import { faqs } from "../utils/appData";
 
-type Props = {};
+export const FAQs = () => {
 
-export const FAQs = (props: Props) => {
-  const faqs = [
-    {
-      title: "Accordion 1",
-      ariaControls: "panel1a-content",
-      id: "panel1a-header",
-      text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo lobortis eget.",
-    },
-    {
-      title: "Accordion 2",
-      ariaControls: "panel2a-content",
-      id: "panel2a-header",
-      text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo lobortis eget.",
-    },
-  ];
+  const FAQTitle = styled(Typography)`
+    font-weight: 700;
+    font-size: 20px;
+    @media screen and (max-width: 1100px) {
+      font-size: 16px;
+    }
+    @media screen and (max-width: 500px) {
+      font-size: 14px;
+    }
+  `;
+
+  const MainTitle = styled(Typography)`
+    font-size: 30px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    @media screen and (max-width: 1100px) {
+      font-size: 26px;
+    }    
+    @media screen and (max-width: 500px) {
+      font-size: 20px;
+    }    
+  `;
+
+  const FAQDesc = styled(Typography)`
+    @media screen and (max-width: 800px) {
+      font-size: 14px;
+    }
+    @media screen and (max-width: 500px) {
+      font-size: 13px;
+    }
+  `;
 
   return (
-    <DefaultLayout sx={{ background: "#EDF2F6" }}>
+    <DefaultLayout sx={{background: "#EDF2F6"}}>
       <Box
         sx={{
-          p: "1.5rem",
-          
-          "& .container": {
-            width: "100%",
-            maxWidth: "1312px",
-            mx: "auto",
-
-          }
+          p: "23px",
+          maxWidth: "1200px",
+          mx: "auto",
         }}
       >
-        <div className="container">
-        {faqs.map(faq => (
-          <Accordion
-            key={faq.id}
-          >
-            <AccordionSummary
-              expandIcon={<ExpandMoreIcon />}
-              aria-controls={faq.ariaControls}
-              id={faq.id}
+        {faqs &&
+          faqs.map((faq) => (
+            <Box
+              key={faq.id}
               sx={{
-                color: "#29781D",
-                background: "rgba(41, 120, 29, 0.10)",
+                marginBottom: "30px",
               }}
             >
-              <Typography fontWeight={700} fontSize={20}>
-                {faq.title}
-              </Typography>
-            </AccordionSummary>
-            <AccordionDetails>
-              <Typography>{faq.text}</Typography>
-            </AccordionDetails>
-          </Accordion>
-        ))}
-
-        </div>
+              {faq.title && <MainTitle>{faq.title}</MainTitle>}
+              {faq.data &&
+                faq.data.map((faqData: any) => (
+                  <Accordion key={faqData.id}>
+                    <AccordionSummary
+                      expandIcon={<ExpandMoreIcon />}
+                      aria-controls={faqData.id}
+                      id={faqData.id}
+                      sx={{
+                        background: "rgba(41, 120, 29, 0.10)",
+                      }}
+                    >
+                      <FAQTitle>{faqData.title}</FAQTitle>
+                    </AccordionSummary>
+                    <AccordionDetails>
+                      <FAQDesc>{faqData.text}</FAQDesc>
+                    </AccordionDetails>
+                  </Accordion>
+                ))}
+              {faq?.description && (
+                <Typography sx={{marginTop: "15px", fontSize: "13px"}}>
+                  {faq.description}
+                </Typography>
+              )}
+            </Box>
+          ))}
       </Box>
     </DefaultLayout>
   );

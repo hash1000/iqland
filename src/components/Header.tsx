@@ -1,16 +1,13 @@
 import styled from "@emotion/styled";
+import React, { useState } from "react";
 import { Box, Button, IconButton, Menu, MenuItem } from "@mui/material";
-import React from "react";
 import MenuIcon from "@mui/icons-material/Menu";
 import { Link } from "react-router-dom";
-
-type Props = {};
 
 const CustomHeader = styled(Box)`
   padding: 23px;
   box-shadow: 0px 1px 0px 0px rgba(41, 120, 29, 0.13);
-
-  & .container {
+  .container {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -22,12 +19,23 @@ const CustomHeader = styled(Box)`
   }
 `;
 
-export const Header = React.memo(({}: Props) => {
-  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+const socialLinks = [
+  { id: 1, imgSrc: "Twitter.svg", altText: "Twitter", socialURL: "https://twitter.com/IQLAND_AI" },
+  { id: 2, imgSrc: "FB.svg", altText: "Facebook", socialURL: "https://www.facebook.com/profile.php?id=61550296633055" },
+  { id: 3, imgSrc: "Tiktok.svg", altText: "Tiktok", socialURL: "https://www.tiktok.com/@iqland.ai" },
+  { id: 4, imgSrc: "Instagram.svg", altText: "Instagram", socialURL: "https://www.instagram.com/iqland.ai/" },
+  { id: 5, imgSrc: "LinkedIn.svg", altText: "LinkedIn", socialURL: "https://www.linkedin.com/company/96654559/admin/feed/posts/" },
+  { id: 6, imgSrc: "redit.svg", altText: "Redit", socialURL: "https://www.reddit.com/user/IQLAND" },
+];
+
+export const Header = () => {
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
+
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
   };
+
   const handleClose = () => {
     setAnchorEl(null);
   };
@@ -43,9 +51,7 @@ export const Header = React.memo(({}: Props) => {
           onClick={handleClick}
           sx={{
             p: "10px",
-            display: {
-              sm: "none",
-            },
+            display: { sm: "none" },
           }}
           aria-label="menu"
         >
@@ -53,104 +59,58 @@ export const Header = React.memo(({}: Props) => {
         </IconButton>
         <Menu
           id="basic-menu"
-          anchorEl={anchorEl}
+          anchorEl={anchorEl} 
           open={open}
           onClose={handleClose}
           MenuListProps={{
             "aria-labelledby": "basic-button",
           }}
           sx={{
-            display: {
-              sm: "none"
-            }
+            display: { sm: "none" },
           }}
         >
-          <MenuItem>
-            <a href="#">
-              <img src={`${process.env.PUBLIC_URL}/images/Twitter.svg`} alt="twitter" />
-            </a>
-          </MenuItem>
-          <MenuItem>
-            <a href="#">
-              <img src={`${process.env.PUBLIC_URL}/images/FB.svg`} alt="facebook" />
-            </a>
-          </MenuItem>
-          <MenuItem>
-            <a href="#">
-              <img src={`${process.env.PUBLIC_URL}/images/Tiktok.svg`} alt="Tiktok" />
-            </a>
-          </MenuItem>
-          <MenuItem>
-            <a href="#">
-              <img src={`${process.env.PUBLIC_URL}/images/Instagram.svg`} alt="Instagram" />
-            </a>
-          </MenuItem>
-          <MenuItem>
-            <a href="#">
-              <img src={`${process.env.PUBLIC_URL}/images/LinkedIn.svg`} alt="LinkedIn" />
-            </a>
-          </MenuItem>
-          <MenuItem>
-            <a href="#">
-              <img src={`${process.env.PUBLIC_URL}/images/redit.svg`} alt="redit" />
-            </a>
-          </MenuItem>
+          {socialLinks.map((link) => (
+            <MenuItem key={link.id}>
+              <Box component={Link} to={link?.socialURL ?? ""} target="_blank">
+                <img src={`${process.env.PUBLIC_URL}/images/${link.imgSrc}`} alt={link.altText} />
+              </Box>
+            </MenuItem>
+          ))}
         </Menu>
         <Box
           sx={{
-            display: {
-              sm: "flex",
-              xs: "none",
-            },
+            display: { sm: "flex", xs: "none" },
             flexWrap: "wrap",
             justifyContent: "center",
             alignItems: "center",
             gap: "15px",
-
             "& img": {
               height: "32px",
               aspeceRatio: 1,
             },
           }}
         >
-          <a href="#">
-            <img src={`${process.env.PUBLIC_URL}/images/Twitter.svg`} alt="twitter" />
-          </a>
-          <a href="#">
-            <img src={`${process.env.PUBLIC_URL}/images/FB.svg`} alt="facebook" />
-          </a>
-          <a href="#">
-            <img src={`${process.env.PUBLIC_URL}/images/Tiktok.svg`} alt="Tiktok" />
-          </a>
-          <a href="#">
-            <img src={`${process.env.PUBLIC_URL}/images/Instagram.svg`} alt="Instagram" />
-          </a>
-          <a href="#">
-            <img src={`${process.env.PUBLIC_URL}/images/LinkedIn.svg`} alt="LinkedIn" />
-          </a>
-          <a href="#">
-            <img src={`${process.env.PUBLIC_URL}/images/redit.svg`} alt="redit" />
-          </a>
+          {socialLinks.map((link) => (
+            <Box component={Link} to={link?.socialURL ?? ""} key={link.id} target="_blank">
+              <img src={`${process.env.PUBLIC_URL}/images/${link.imgSrc}`} alt={link.altText} />
+            </Box>
+          ))}
         </Box>
-        <Box component={Link} to="/login" sx={{
-          ml:'auto',
-          display: 'inline',
-        }}>
-        <Button
-          sx={{
-            textTransform: "capitalize",
-            bgcolor: "#29781D",
-
-            "&:hover": {
+        <Box component={Link} to="/login" sx={{ ml: "auto", display: "inline" }}>
+          <Button
+            sx={{
+              textTransform: "capitalize",
               bgcolor: "#29781D",
-            },
-          }}
-          variant="contained"
-        >
-          Login
-        </Button>
+              "&:hover": {
+                bgcolor: "#29781D",
+              },
+            }}
+            variant="contained"
+          >
+            Login
+          </Button>
         </Box>
       </div>
     </CustomHeader>
   );
-});
+};
