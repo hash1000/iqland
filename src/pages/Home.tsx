@@ -10,18 +10,15 @@ import { useToast } from "../components/Layouts/toastContext";
 export const Home = () => {
   const [showModal, setShowModal] = useState<boolean>(false);
   const [email, setEmail] = useState<string>("");
-  const [isValidEmail, setIsValidEmail] = useState<boolean | null>(null);
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
   const {showToast} = useToast();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    setIsValidEmail(null);
 
     const emailPattern = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
     const isValid = emailPattern.test(email);
-    setIsValidEmail(isValid);
 
     if (isValid) {
       try {

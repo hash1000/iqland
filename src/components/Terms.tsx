@@ -1,4 +1,4 @@
-import { Box, Link } from "@mui/material";
+import { Link } from "@mui/material";
 import React from "react";
 
 export const Terms = React.memo(() => {
