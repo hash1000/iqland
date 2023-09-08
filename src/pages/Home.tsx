@@ -1,6 +1,5 @@
 import {Box, Button, Modal, Paper, InputBase, Typography} from "@mui/material";
 import {DefaultLayout} from "../components/Layouts";
-import CloseIcon from "@mui/icons-material/Close";
 import CircularProgress from "@mui/material/CircularProgress";
 import {useState} from "react";
 import {Link} from "react-router-dom";
@@ -58,10 +57,9 @@ export const Home = () => {
     alignItems: "center",
     flexDirection: "column",
     textAlign: "center",
-    pt: 2,
-    px: 4,
-    pb: 3,
+    padding: "50px 20px",
     width: "calc(100% - 6rem)",
+    outline: 0,
   };
 
   return (
@@ -196,43 +194,60 @@ export const Home = () => {
             },
           }}
         >
-          <Box sx={{...style, maxWidth: "200px"}}>
+          <Box sx={{...style, maxWidth: "270px", minWidth: "270px"}}>
             <Box
               sx={{
                 width: "100%",
                 textAlign: "right",
-                marginRight: "-30px",
+                position: "absolute",
+                top: "15px",
+                right: "15px",
               }}
             >
-              <CloseIcon
+              <Box
                 onClick={() => setShowModal(false)}
+                component="img"
                 sx={{
-                  width: "30px",
-                  height: "30px",
+                  height: 16.5,
+                  width: 16.5,
                   cursor: "pointer",
                 }}
+                alt="close"
+                src={`${process.env.PUBLIC_URL}/images/cross.svg`}
               />
             </Box>
+            <Box
+                component="img"
+                sx={{
+                  height: 120,
+                  width: 120,
+                }}
+                alt="congrats"
+                src={`${process.env.PUBLIC_URL}/images/congrats.png`}
+              />
             <Typography
               variant="h5"
               sx={{
                 color: "#29781D",
                 fontSize: "25px",
                 fontWeight: "700",
+                lineHeight: '15px',
+                mt: "20px",
                 mb: "8px",
               }}
               component="h2"
             >
-              Congrats!
+              Congratulations.
             </Typography>
             <Typography
               variant="h5"
               sx={{
-                fontSize: "16px",
+                lineHeight: "30px",
+                fontSize: "14px",
               }}
-              component="h3"
+              component="h5"
             >
-              Your are on the waitlist.
+               Congrats! Your are on the waitlist
             </Typography>
             {/* <Button
               variant="contained"

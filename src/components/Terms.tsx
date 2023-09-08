@@ -1,17 +1,15 @@
-import { Link } from "@mui/material";
+import { Box } from "@mui/material";
 import React from "react";
 
 export const Terms = React.memo(() => {
   return (
-    <Link
-      href="#"
+    <Box
       sx={{
         fontSize: "16px",
         color: '#979797',
-        textDecoration: 'none',
       }}
     >
-      Terms and conditions
-    </Link>
+      copyright iqland.ai 2023. All rights reserved.
+    </Box>
   );
 });
