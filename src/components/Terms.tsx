@@ -6,10 +6,11 @@ export const Terms = React.memo(() => {
     <Box
       sx={{
         fontSize: "16px",
-        color: '#979797',
+        color: 'white',
+        textAlign: "center"
       }}
     >
-      copyright iqland.ai 2023. All rights reserved.
+      © Copyright 2023. All rights reserved.
     </Box>
   );
 });

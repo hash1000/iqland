@@ -1,19 +1,34 @@
-import { Terms } from './Terms'
-import { Box } from '@mui/material'
-import styled from '@emotion/styled'
+import { Terms } from "./Terms";
+import { Box, Container, Typography } from "@mui/material";
+import styled from "@emotion/styled";
 
-type Props = {}
+type Props = {};
 
 const CustomFooter = styled(Box)`
   padding: 18px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-top: 1px solid #D3E3DA;
-`
+  border-top: 1px solid #d3e3da;
+  background-color: #29781d;
+  color: white;
+`;
 
 export const Footer = (props: Props) => {
   return (
-    <CustomFooter><Terms/></CustomFooter>
-  )
-}
+    <CustomFooter>
+      <Container
+        sx={{
+          display: "flex",
+          justifyContent: {sm:"space-between",xs:"center"},
+          flexDirection: {sm:"row",xs:"column"},
+          gap:1,
+          alignItems: "center",
+          "@media (min-width: 1200px)": { 
+            maxWidth: "1312px",
+          },
+        }}
+      >
+        <Terms />
+        {/* <Typography>Site Map</Typography> */}
+      </Container>
+    </CustomFooter>
+  );
+};

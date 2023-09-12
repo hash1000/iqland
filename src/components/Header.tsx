@@ -97,7 +97,7 @@ export const Header = () => {
           ))}
         </Box>
         <Box component={Link} to="/login" sx={{ ml: "auto", display: "inline" }}>
-          <Button
+          {/* <Button
             sx={{
               textTransform: "capitalize",
               bgcolor: "#29781D",
@@ -108,7 +108,7 @@ export const Header = () => {
             variant="contained"
           >
             Login
-          </Button>
+          </Button> */}
         </Box>
       </div>
     </CustomHeader>

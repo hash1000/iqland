@@ -21,8 +21,8 @@ export const Home = () => {
 
     if (isValid) {
       try {
-        const response = await axios.post(
-          "https://ahmad6192.pythonanywhere.com/join_waitlist",
+        await axios.post(
+          `${process.env.REACT_APP_SERVER_URL}/join_waitlist`,
           {
             email,
           },
@@ -32,7 +32,6 @@ export const Home = () => {
             },
           }
         );
-        console.log(JSON.stringify(response.data));
         setShowModal(true);
       } catch (error) {
         console.log();
@@ -62,6 +61,11 @@ export const Home = () => {
     outline: 0,
   };
 
+  const closeHandler = () => {
+    setEmail("");
+    setShowModal(false);
+  }
+
   return (
     <DefaultLayout sx={{background: "#EDF2F6"}}>
       <Box
@@ -80,7 +84,7 @@ export const Home = () => {
               lg: "55px",
               xl: "55px",
             },
-            mb: "48px",
+            mb: "10px",
           },
 
           '& > img[alt="help"]': {
@@ -90,6 +94,7 @@ export const Home = () => {
         }}
       >
         <img src={`${process.env.PUBLIC_URL}/images/logomain.svg`} alt="logo" />
+        <Typography sx={{pt:"-10%",mb: "38px", display:"flex", justifyContent:"center",textAlign:"center",color:"#29781D"}}>Shaping the Future of Home Development with Data</Typography>
         <Box component="form" onSubmit={handleSubmit} sx={{
             width: "100%",
         }}>
@@ -117,8 +122,9 @@ export const Home = () => {
             type="email"
             required
             sx={{ml: 1, flex: 1}}
-            placeholder="Integrate Constant Contact"
-            inputProps={{"aria-label": "Integrate Constant Contact "}}
+            placeholder="Enter the email address"
+            inputProps={{"aria-label": "Enter the email address"}}
+            value={email}
           />
           <img
             src={`${process.env.PUBLIC_URL}/images/Questionicon.svg`}
@@ -184,7 +190,6 @@ export const Home = () => {
         </Box>
         <Modal
           open={showModal}
-          onClose={() => setShowModal(false)}
           aria-labelledby="parent-modal-title"
           aria-describedby="parent-modal-description"
           sx={{
@@ -205,7 +210,7 @@ export const Home = () => {
               }}
             >
               <Box
-                onClick={() => setShowModal(false)}
+                onClick={closeHandler}
                 component="img"
                 sx={{
                   height: 16.5,
