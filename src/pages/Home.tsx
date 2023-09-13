@@ -122,8 +122,8 @@ export const Home = () => {
             type="email"
             required
             sx={{ml: 1, flex: 1}}
-            placeholder="Enter the email address"
-            inputProps={{"aria-label": "Enter the email address"}}
+            placeholder="Enter your email address"
+            inputProps={{"aria-label": "Enter your email address"}}
             value={email}
           />
           <img

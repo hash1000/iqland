@@ -17,7 +17,7 @@ export const Footer = (props: Props) => {
       <Container
         sx={{
           display: "flex",
-          justifyContent: {sm:"space-between",xs:"center"},
+          justifyContent: {sm:"center",xs:"center"},
           flexDirection: {sm:"row",xs:"column"},
           gap:1,
           alignItems: "center",

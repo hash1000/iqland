@@ -43,7 +43,7 @@ export const Header = () => {
   return (
     <CustomHeader>
       <div className="container">
-        <IconButton
+        {/* <IconButton
           id="basic-button"
           aria-controls={open ? "basic-menu" : undefined}
           aria-haspopup="true"
@@ -76,17 +76,17 @@ export const Header = () => {
               </Box>
             </MenuItem>
           ))}
-        </Menu>
+        </Menu> */}
         <Box
           sx={{
-            display: { sm: "flex", xs: "none" },
-            flexWrap: "wrap",
+            display: "flex",
+            // flexWrap: "wrap",
             justifyContent: "center",
             alignItems: "center",
             gap: "15px",
             "& img": {
               height: "32px",
-              aspeceRatio: 1,
+              aspectRatio: 1,
             },
           }}
         >
