@@ -20,7 +20,7 @@ const faqs: FAQ[] = [
         {
           id: "1",
           title: "How much does it cost to use iqland.ai?",
-          text: "iqland.ai is priced at $50 per report. Each report provides you with a comprehensive analysis of your chosen parcel's development potential and associated insights.",
+          text: "iqland.ai is priced at $49.95 per report. Each report provides you with a comprehensive analysis of your chosen parcel's development potential and associated insights.",
         },
         {
           id: "2",
@@ -79,7 +79,7 @@ const faqs: FAQ[] = [
         {
           id: "1",
           title: "How do I begin using iqland.ai?",
-          text: "Getting started is easy. Simply visit our website, create an account, choose a parcel of land, and purchase a report for $50 to unlock a wealth of invaluable information.",
+          text: "Getting started is easy. Simply visit our website, create an account, choose a parcel of land, and purchase a report for $49.95 to unlock a wealth of invaluable information.",
         },
         {
           id: "2",
