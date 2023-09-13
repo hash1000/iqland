@@ -2,20 +2,23 @@ import styled from "@emotion/styled";
 import React, { useState } from "react";
 import { Box, Button, IconButton, Menu, MenuItem } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const CustomHeader = styled(Box)`
   padding: 23px;
   box-shadow: 0px 1px 0px 0px rgba(41, 120, 29, 0.13);
   .container {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     gap: 1rem;
     position: relative;
     width: 100%;
     margin: 0 auto;
     max-width: 1312px;
+    @media screen and (max-width:480px) {
+      flex-direction: column;
+    }
   }
 `;
 
@@ -30,6 +33,8 @@ const socialLinks = [
 
 export const Header = () => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const location = useLocation();
+  const currentPath = location.pathname;
   const open = Boolean(anchorEl);
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -96,20 +101,25 @@ export const Header = () => {
             </Box>
           ))}
         </Box>
-        <Box component={Link} to="/login" sx={{ ml: "auto", display: "inline" }}>
+        {currentPath === "/faqs" &&  
+        <Box>
+          <Box component={Link} to="/" sx={{ ml: "auto", display: "inline" }}>
+          <img src={`${process.env.PUBLIC_URL}/images/logomain.svg`} alt="logo" style={{height: "25px"}} /> 
           {/* <Button
-            sx={{
-              textTransform: "capitalize",
-              bgcolor: "#29781D",
-              "&:hover": {
+              sx={{
+                textTransform: "capitalize",
                 bgcolor: "#29781D",
-              },
-            }}
-            variant="contained"
-          >
-            Login
-          </Button> */}
-        </Box>
+                "&:hover": {
+                  bgcolor: "#29781D",
+                },
+              }}
+              variant="contained"
+            >
+              Login
+            </Button> */}
+          </Box>
+        </Box>}
+
       </div>
     </CustomHeader>
   );

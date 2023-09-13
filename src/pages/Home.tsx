@@ -209,17 +209,19 @@ export const Home = () => {
                 right: "15px",
               }}
             >
-              <Box
-                onClick={closeHandler}
-                component="img"
-                sx={{
-                  height: 16.5,
-                  width: 16.5,
-                  cursor: "pointer",
-                }}
-                alt="close"
-                src={`${process.env.PUBLIC_URL}/images/cross.svg`}
-              />
+              <Box component={Link} to="/faqs">
+                <Box
+                  onClick={closeHandler}
+                  component="img"
+                  sx={{
+                    height: 16.5,
+                    width: 16.5,
+                    cursor: "pointer",
+                  }}
+                  alt="close"
+                  src={`${process.env.PUBLIC_URL}/images/cross.svg`}
+                />
+              </Box>
             </Box>
             <Box
                 component="img"
