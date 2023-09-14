@@ -254,7 +254,7 @@ export const Home = () => {
               }}
               component="h5"
             >
-               Congrats! Your are on the waitlist
+               Congrats! You're on the waitlist
             </Typography>
             {/* <Button
               variant="contained"
