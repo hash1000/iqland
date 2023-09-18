@@ -47,7 +47,7 @@ export const Header = () => {
 
   return (
     <CustomHeader>
-      <div className="container">
+      <Box className="container" sx={{ flexDirection: currentPath === "/" ? "column" : "" }}>
         {/* <IconButton
           id="basic-button"
           aria-controls={open ? "basic-menu" : undefined}
@@ -119,8 +119,7 @@ export const Header = () => {
             </Button> */}
           </Box>
         </Box>}
-
-      </div>
+      </Box>
     </CustomHeader>
   );
 };
