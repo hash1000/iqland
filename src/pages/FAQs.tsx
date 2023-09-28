@@ -9,10 +9,9 @@ import {
   styled,
 } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import { faqs } from "../utils/appData";
+import {faqs} from "../utils/appData";
 
 export const FAQs = () => {
-
   const FAQTitle = styled(Typography)`
     font-weight: 700;
     font-size: 20px;
@@ -30,10 +29,10 @@ export const FAQs = () => {
     margin-bottom: 10px;
     @media screen and (max-width: 1100px) {
       font-size: 26px;
-    }    
+    }
     @media screen and (max-width: 500px) {
       font-size: 20px;
-    }    
+    }
   `;
 
   const FAQDesc = styled(Typography)`
@@ -77,7 +76,19 @@ export const FAQs = () => {
                       <FAQTitle>{faqData.title}</FAQTitle>
                     </AccordionSummary>
                     <AccordionDetails>
-                      <FAQDesc>{faqData.text}</FAQDesc>
+                      <FAQDesc>
+                        <p>{faqData.text}</p>
+                        <ul>
+                          {faqData.List &&
+                            faqData.List.map((faqList: any) => (
+                              <li key={faqList.id}>
+                                <strong>{faqList.title}</strong>
+                                {` `}
+                                {faqList.text}
+                              </li>
+                            ))}
+                        </ul>
+                      </FAQDesc>
                     </AccordionDetails>
                   </Accordion>
                 ))}

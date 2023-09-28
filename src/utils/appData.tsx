@@ -73,7 +73,7 @@ const faqs: FAQ[] = [
           },
           {
             id: "2",
-            title: "Projected Post-completion Values",
+            title: "Projected Post-completion Values:",
             text: `Determined using our specialized comparable sales algorithm, which assesses the value of the selected plan in the context of current market dynamics.`,
           },
           {
@@ -228,7 +228,7 @@ const faqs: FAQ[] = [
           },
           {
             id: "2",
-            title: "Strategic Planning: :",
+            title: "Strategic Planning:",
             text: `By understanding the value different house plans or modifications might bring, you can strategically select plans that align with your financial objectives and market demands.`,
           },
         ],
@@ -446,22 +446,22 @@ const faqs: FAQ[] = [
         List: [
           {
             id: "1",
-            title: "Lenders",
+            title: "Lenders:",
             text: "Share reports to showcase project viability and potential returns, aiding in securing finance.",
           },
           {
             id: "2",
-            title: "Investors",
+            title: "Investors:",
             text: "Offer a clear picture of the development opportunity and projected outcomes, enticing potential investment.",
           },
           {
             id: "3",
-            title: "Contractors",
+            title: "Contractors:",
             text: "SProvide a detailed overview of the project, streamlining discussions about construction aspects and costs.",
           },
           {
             id: "4",
-            title: "Surveyors",
+            title: "Surveyors:",
             text: "Deliver essential information to ensure that all land considerations and potential hurdles are identified early on.",
           },
         ],
